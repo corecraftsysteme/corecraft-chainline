@@ -1,8 +1,0 @@
-besu_manifest_error:
-  jar: "besu-app-25.8.0.jar"
-  fehler: "kein Main-Class im Manifest"
-  ursache: "nicht direkt ausführbar"
-  lösung:
-    - "nutze ./bin/besu Shell-Skript"
-    - "starte über WSL oder Docker"
-    - "optional: eigenen Java-Launcher bauen"

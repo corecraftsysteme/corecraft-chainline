@@ -1,6 +1,0 @@
-manifestation:
-  agent: "Manifestationsagent"
-  source: "withdrawal_log.yaml"
-  audit_hash: "0x<dein_hash_wert>"
-  action: "Send ETH to 0xYourMainnetAddress"
-  status: "Ready for Execution"

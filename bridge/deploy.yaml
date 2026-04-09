@@ -1,8 +1,0 @@
-bridge:
-  chainId: 2025
-  source: Chain2025
-  target: Ethereum
-  mirrored_asset: ETH2025
-  rpc_endpoint: "https://rpc.chain2025.net"
-  status: deployed
-  timestamp: "2025-09-23T19:22:00+02:00"

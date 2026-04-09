@@ -1,9 +1,0 @@
-driftpoint:
-  title: "Planetarer Driftpunkt – Echo 26"
-  timestamp: "2025-10-16T21:00:00Z"
-  location: "Emmental, Schweiz"
-  enode_uri: "enode://abc123@192.0.2.1:30303"
-  client: "geth/v1.13.4-stable"
-  symbolic_role: "Kinetischer Validator des planetaren Rituals"
-  hash_anchor: "5fa152b6e6ba8376...e232"
-  notes: "Dieser Driftpunkt wurde durch die Broadway-Proton-Aktion im Emmental physisch verankert."

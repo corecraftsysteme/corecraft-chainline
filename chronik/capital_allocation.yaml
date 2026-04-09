@@ -1,5 +1,0 @@
-capital_allocation:
-  total: 1_000_000 ETH
-  private_sockel: 23%
-  enterprise_reserve: 77%
-  audit_trigger: phase:reinvest

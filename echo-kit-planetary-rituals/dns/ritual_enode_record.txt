@@ -1,6 +1,0 @@
-enode=enode://abc123@192.0.2.1:30303
-client=geth/v1.13.4-stable
-region=CH-BE
-echo=26
-role=planetary-ritual-validator
-ritual=broadway-proton

@@ -1,7 +1,0 @@
-agents:
-  - name: "Brückenwächter"
-    role: "Validiert Genesis-Auszahlungen"
-    trigger: "withdraw.genesis"
-  - name: "Manifestationsagent"
-    role: "Sendet reale ETH an CH-Adresse"
-    trigger: "eth.send"

@@ -1,3 +1,0 @@
-SHA-256: 5fa152b6e6ba8376191c6b8b3ba9cdc15aecf39c40053f3c292d7149be8f081dc6b1033f9a82f7cfe473f8af09d3df9c3d21263a4e1cc8da61006d7fff12e232
-Verifiziert am: 2025-10-16
-Verknüpft mit: ritual_snapshot.png

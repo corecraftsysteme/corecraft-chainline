@@ -1,8 +1,0 @@
-manifestation:
-  agent: Manifestationsagent
-  source: withdrawal_log.yaml
-  audit_hash: 3eb0dae9545b51f93b87c80a3fe68065a5de391a7abe639597304e2c96244ae3
-  target: 0xYourMainnetAddress
-  amount: 1000000 ETH
-  timestamp: '2025-09-23T19:39:17.445883+00:00'
-  status: Ready for Execution
