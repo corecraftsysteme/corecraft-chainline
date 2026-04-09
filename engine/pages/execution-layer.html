@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Execution‑Layer — Chainline</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../portal.css">
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+  fetch("../../header.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="wrap">
+  <span class="tag">Engine</span>
+  <h1>Execution‑Layer</h1>
+  <p class="small">Deterministische Ausführung von Operator‑ und Ritual‑Operationen.</p>
+
+  <div class="card">
+    <h2>Beschreibung</h2>
+    <p>Der Execution‑Layer führt Write‑Ops, Transition‑Ops und Seal‑Ops deterministisch aus.</p>
+  </div>
+
+  <div class="card">
+    <h2>Operationstypen</h2>
+    <ul>
+      <li>Write‑Ops</li>
+      <li>Transition‑Ops</li>
+      <li>Seal‑Ops</li>
+      <li>Audit‑Ops</li>
+    </ul>
+  </div>
+</div>
+
+</body>
+</html>
