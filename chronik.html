@@ -2,11 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Chain2025 Chronik — Dynamic Timeline</title>
+  <title>Chain2025 — Chronik</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="portal.css">
   <style>
-    body { font-family: system-ui, sans-serif; margin: 0; padding: 2rem; background:#05060a; color:#f5f5f5; }
-    .wrap { max-width: 900px; margin: 0 auto; }
     .timeline { margin-top:2rem; border-left:2px solid #333; padding-left:2rem; }
     .entry { margin-bottom:2rem; position:relative; }
     .entry::before {
@@ -25,48 +24,49 @@
     .desc { opacity:.85; }
   </style>
 </head>
-  <link rel="stylesheet" href="portal.css">
+
 <body>
-  <div class="nav">
-  <a href="index.html">🏠 Home</a>
-  <a href="chronik.html">📜 Chronik</a>
-  <a href="explorer.html">🗂️ Explorer</a>
-  <a href="rituale.html">🔱 Rituale</a>
+
+<div class="nav">
+  <a href="index.html">Home</a>
+  <a href="chronik.html">Chronik</a>
+  <a href="explorer.html">Explorer</a>
+  <a href="rituale.html">Rituale</a>
 </div>
 
+<div class="wrap">
+  <span class="tag">Chain2025</span>
+  <h1>Chronik</h1>
+  <p>Dynamische Timeline aus <code>chronik.json</code>.</p>
+
+  <div id="timeline" class="timeline"></div>
 </div>
 
-  <div class="wrap">
-    <h1>Chain2025 — Chronik</h1>
-    <p>Dynamische Timeline aus <code>chronik.json</code>.</p>
+<script>
+  fetch("chronik.json")
+    .then(r => r.json())
+    .then(data => {
+      const t = document.getElementById("timeline");
+      const events = [];
 
-    <div id="timeline" class="timeline"></div>
+      events.push(data.chain2025.genesis);
+      data.chain2025.echo.forEach(e => events.push(e));
+      events.push(data.chain2025.closure);
 
-    <p style="margin-top:3rem;">
-      <a href="index.html">← Back to Home</a>
-    </p>
-  </div>
+      events.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
 
-  <script>
-    fetch("chronik.json")
-      .then(r => r.json())
-      .then(data => {
-        const t = document.getElementById("timeline");
-        const c = data.chain2025;
-
-        function addEntry(e) {
-          t.innerHTML += `
-            <div class="entry">
-              <div class="date">${e.id}</div>
-              <div class="title">${e.title}</div>
-              <div class="desc">${e.description}</div>
-            </div>`;
-        }
-
-        addEntry(c.genesis);
-        c.echo.forEach(addEntry);
-        addEntry(c.closure);
+      events.forEach(ev => {
+        t.innerHTML += `
+          <div class="entry">
+            <div class="date">${ev.id}</div>
+            <div class="title">${ev.title}</div>
+            <div class="desc">${ev.description}</div>
+          </div>
+        `;
       });
-  </script>
+    });
+</script>
+
 </body>
 </html>
+
