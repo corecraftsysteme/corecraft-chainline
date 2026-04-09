@@ -2,59 +2,44 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Chain2025 Explorer</title>
+  <title>Chain2025 — Explorer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body { font-family: system-ui, sans-serif; background:#05060a; color:#f5f5f5; padding:2rem; }
-    .wrap { max-width:900px; margin:0 auto; }
-    .card { border:1px solid #333; padding:1rem; border-radius:12px; margin-bottom:1rem; background:rgba(255,255,255,0.03); }
-    a { color:#7fd4ff; }
-  </style>
-</head>
   <link rel="stylesheet" href="portal.css">
+</head>
+
 <body>
-  </body>
-  <div class="nav">
-  <a href="index.html">🏠 Home</a>
-  <a href="chronik.html">📜 Chronik</a>
-  <a href="explorer.html">🗂️ Explorer</a>
-  <a href="rituale.html">🔱 Rituale</a>
+
+<div class="nav">
+  <a href="index.html">Home</a>
+  <a href="chronik.html">Chronik</a>
+  <a href="explorer.html">Explorer</a>
+  <a href="rituale.html">Rituale</a>
 </div>
 
-</div>
-  <div class="wrap">
-    <h1>Chain2025 — Explorer</h1>
-    <p>Navigator für Artefakte, Dokumente und Rituale.</p>
+<div class="wrap">
+  <span class="tag">Chain2025</span>
+  <h1>Artefakt‑Explorer</h1>
+  <p>Automatisch generierte Liste aus <code>explorer.json</code>.</p>
 
-    <div class="card">
-      <h2>Dokumentation</h2>
-      <ul>
-        <li><a href="docs_chain2025/INDEX.md">INDEX.md</a></li>
-        <li><a href="docs_chain2025/ARCHITECTURE.md">ARCHITECTURE.md</a></li>
-        <li><a href="docs_chain2025/SECURITY.md">SECURITY.md</a></li>
-        <li><a href="docs_chain2025/DEPLOYMENT.md">DEPLOYMENT.md</a></li>
-        <li><a href="docs_chain2025/FLOW.md">FLOW.md</a></li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h2>Chronik</h2>
-      <ul>
-        <li><a href="chronik.html">Timeline View</a></li>
-        <li><a href="chronik.json">chronik.json</a></li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h2>Rituale</h2>
-      <ul>
-        <li><a href="rituale.html">Ritualübersicht</a></li>
-      </ul>
-    </div>
-
-    <p><a href="index.html">← Back to Home</a></p>
+  <div class="card">
+    <h2>Dokumentation</h2>
+    <ul id="doclist"></ul>
   </div>
+</div>
 
+<script>
+  fetch("explorer.json")
+    .then(r => r.json())
+    .then(data => {
+      const list = document.getElementById("doclist");
+      data.docs.forEach(path => {
+        const name = path.split("/").pop();
+        list.innerHTML += `<li><a href="${path}">${name}</a></li>`;
+      });
+    });
+</script>
+
+</body>
 </html>
 
 
