@@ -27,7 +27,13 @@
 
 <body>
 
-<div class="nav">
+<div id="header"></div>
+<script>
+  fetch("header.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
   <a href="index.html">Home</a>
   <a href="chronik.html">Chronik</a>
   <a href="explorer.html">Explorer</a>
