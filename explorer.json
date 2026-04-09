@@ -1,0 +1,10 @@
+{
+  "docs": [
+    "docs_chain2025/INDEX.md",
+    "docs_chain2025/ARCHITECTURE.md",
+    "docs_chain2025/SECURITY.md",
+    "docs_chain2025/GENESIS.md",
+    "docs_chain2025/ECHO.md",
+    "docs_chain2025/CLOSURE.md"
+  ]
+}
