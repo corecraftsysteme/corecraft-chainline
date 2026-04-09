@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Markdown Viewer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="portal.css">
+  <style>
+    #content { margin-top:2rem; line-height:1.6; }
+    pre { background:#11151f; padding:1rem; border-radius:8px; overflow:auto; }
+    code { background:#11151f; padding:.2rem .4rem; border-radius:4px; }
+  </style>
+</head>
+
+<body>
+
+<div class="nav">
+  <a href="index.html">Home</a>
+  <a href="chronik.html">Chronik</a>
+  <a href="explorer.html">Explorer</a>
+  <a href="rituale.html">Rituale</a>
+</div>
+
+<div class="wrap">
+  <span class="tag">Chain2025</span>
+  <h1 id="title">Dokument</h1>
+  <div id="content">Lade…</div>
+</div>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const file = params.get("file");
+
+  document.getElementById("title").innerText = file;
+
+  fetch(file)
+    .then(r => r.text())
+    .then(md => {
+      // Minimal Markdown → HTML
+      md = md.replace(/^# (.*$)/gim, "<h1>$1</h1>");
+      md = md.replace(/^## (.*$)/gim, "<h2>$1</h2>");
+      md = md.replace(/^### (.*$)/gim, "<h3>$1</h3>");
+      md = md.replace(/\*\*(.*)\*\*/gim, "<b>$1</b>");
+      md = md.replace(/\*(.*)\*/gim, "<i>$1</i>");
+      md = md.replace(/`([^`]+)`/gim, "<code>$1</code>");
+      md = md.replace(/\n$/gim, "<br>");
+
+      document.getElementById("content").innerHTML = md;
+    });
+</script>
+
+</body>
+</html>
