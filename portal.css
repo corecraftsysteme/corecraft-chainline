@@ -44,3 +44,31 @@
   letter-spacing: .08em;
 }
 
+.portal-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.portal-intro h1 {
+  margin: 0;
+  font-size: 2.2rem;
+}
+
+.portal-intro h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+.portal-intro p {
+  margin-top: 6px;
+  font-size: 0.95rem;
+  opacity: 0.7;
+}
+
+.portal-nav a {
+  margin: 0 12px;
+  font-weight: 600;
+  text-decoration: none;
+}
