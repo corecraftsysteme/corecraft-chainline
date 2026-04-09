@@ -34,7 +34,7 @@
       const list = document.getElementById("doclist");
       data.docs.forEach(path => {
         const name = path.split("/").pop();
-        list.innerHTML += `<li><a href="${path}">${name}</a></li>`;
+        list.innerHTML += `<li><a href="viewer.html?file=${path}">${name}</a></li>`;
       });
     });
 </script>
