@@ -1,52 +1,10 @@
 {
-  "version": "1.0.0",
-  "project": "Chain2025",
-  "sections": [
-    {
-      "id": "docs",
-      "title": "Chain2025 Dokumentation",
-      "items": [
-        {
-          "id": "architecture",
-          "title": "ARCHITECTURE.md",
-          "file": "docs_chain2025/ARCHITECTURE.md"
-        },
-        {
-          "id": "deployment",
-          "title": "DEPLOYMENT.md",
-          "file": "docs_chain2025/DEPLOYMENT.md"
-        },
-        {
-          "id": "flow",
-          "title": "FLOW.md",
-          "file": "docs_chain2025/FLOW.md"
-        },
-        {
-          "id": "glossary",
-          "title": "GLOSSARY.md",
-          "file": "docs_chain2025/GLOSSARY.md"
-        },
-        {
-          "id": "index",
-          "title": "INDEX.md",
-          "file": "docs_chain2025/INDEX.md"
-        },
-        {
-          "id": "security",
-          "title": "SECURITY.md",
-          "file": "docs_chain2025/SECURITY.md"
-        },
-        {
-          "id": "validator-diagram",
-          "title": "VALIDATOR-DIAGRAM.md",
-          "file": "docs_chain2025/VALIDATOR-DIAGRAM.md"
-        },
-        {
-          "id": "validator-operations",
-          "title": "VALIDATOR-OPERATIONS.md",
-          "file": "docs_chain2025/VALIDATOR-OPERATIONS.md"
-        }
-      ]
-    }
+  "docs": [
+    "docs_chain2025/INDEX.md",
+    "docs_chain2025/ARCHITECTURE.md",
+    "docs_chain2025/SECURITY.md",
+    "docs_chain2025/DEPLOYMENT.md",
+    "docs_chain2025/FLOW.md",
+    "docs_chain2025/VALIDATOR-DIAGRAM.md"
   ]
 }
