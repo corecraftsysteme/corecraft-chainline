@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Engine Validator — Chainline</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../portal.css">
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+  fetch("../../header.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="wrap">
+  <span class="tag">Engine</span>
+  <h1>Validator</h1>
+  <p class="small">Sicherheitskritische Validierung aller Engine‑Operationen.</p>
+
+  <div class="card">
+    <h2>Beschreibung</h2>
+    <p>Der Validator prüft Permissions, Rollen, Signaturen und Hash‑Konsistenz.</p>
+  </div>
+
+  <div class="card">
+    <h2>Verantwortlichkeiten</h2>
+    <ul>
+      <li>Permission‑Checks</li>
+      <li>Signatur‑Validierung</li>
+      <li>Hash‑Konsistenz</li>
+      <li>State‑Integrity‑Checks</li>
+    </ul>
+  </div>
+</div>
+
+</body>
+</html>
