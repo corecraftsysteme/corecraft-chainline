@@ -1,13 +1,10 @@
 {
   "version": "1.0.0",
-  "generated": "2026-04-09T08:26:00",
   "project": "Chain2025",
-  "description": "Deterministic index of Chain2025 documentation",
-
   "sections": [
     {
       "id": "docs",
-      "title": "Chain2025 Documentation",
+      "title": "Chain2025 Dokumentation",
       "items": [
         {
           "id": "architecture",
