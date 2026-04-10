@@ -2,103 +2,60 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Chainline Engine — Deterministische Ausführungsmaschine</title>
+  <title>Chain2025 — Chronik</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../portal.css">
-
-  <style>
-    .card {
-      border: 1px solid #333;
-      border-radius: 12px;
-      padding: 1.25rem 1.5rem;
-      background: rgba(255,255,255,0.02);
-      margin-bottom: 1.5rem;
-      transition: background .2s, border-color .2s;
-    }
-    .card:hover {
-      background: rgba(255,255,255,0.06);
-      border-color: #555;
-    }
-    .card h2 {
-      margin-top: 0;
-      margin-bottom: .5rem;
-    }
-    .small {
-      opacity: .7;
-      font-size: .9rem;
-      margin-top: .5rem;
-    }
-    .card a {
-      color: #9cf;
-      text-decoration: none;
-    }
-    .card a:hover {
-      text-decoration: underline;
-    }
-  </style>
+  <link rel="stylesheet" href="/portal.css">
 </head>
 
 <body>
 
 <div id="header"></div>
 <script>
-  fetch("../header.html")
+  fetch("/header.html")
     .then(r => r.text())
     .then(h => document.getElementById("header").innerHTML = h);
 </script>
 
 <div class="wrap">
+  <span class="tag">Chain2025</span>
+  <h1>Chronik</h1>
 
-  <span class="tag">Chainline</span>
-  <h1>Engine</h1>
-  <p class="small">Die deterministische Ausführungs‑ und Validierungsmaschine der Chainline‑Plattform.</p>
+  <p>Dynamische Timeline aus <code>chronik.json</code>.</p>
 
-  <div class="card">
-    <h2>Runtime</h2>
-    <p>Die Runtime ist der deterministische Kern der Engine.  
-    Sie führt Operator‑Aktionen, Rituale, State‑Übergänge und Audit‑Events aus.</p>
-    <p class="small"><a href="pages/runtime.html">Runtime öffnen →</a></p>
-  </div>
+  <p style="opacity:.85; margin-top:1rem;">
+    Die Chronik ist das operative Gedächtnis der Genesis‑Plattform.
+    Sie zeigt alle signierten Ereignisse, Rituale und State‑Transitions
+    in ihrer exakten zeitlichen Reihenfolge — vollständig deterministisch
+    und reproduzierbar.
+  </p>
 
-  <div class="card">
-    <h2>Scheduler</h2>
-    <p>Der Scheduler orchestriert zeit‑ und ereignisbasierte Abläufe und garantiert deterministische Reihenfolgen.</p>
-    <p class="small"><a href="pages/scheduler.html">Scheduler öffnen →</a></p>
-  </div>
-
-  <div class="card">
-    <h2>Validator</h2>
-    <p>Der Validator prüft jede Aktion gegen Rollen, Permissions und Audit‑Regeln.  
-    Er ist das sicherheitskritische Herzstück der Engine.</p>
-    <p class="small"><a href="pages/validator.html">Validator öffnen →</a></p>
-  </div>
-
-  <div class="card">
-    <h2>State‑Machine</h2>
-    <p>Die State‑Machine definiert alle erlaubten Zustände und Übergänge der Engine‑Objekte.</p>
-    <p class="small"><a href="pages/state-machine.html">State‑Machine öffnen →</a></p>
-  </div>
-
-  <div class="card">
-    <h2>Execution‑Layer</h2>
-    <p>Der Execution‑Layer führt deterministische Operationen aus, die von Operatoren oder Ritualen ausgelöst werden.</p>
-    <p class="small"><a href="pages/execution-layer.html">Execution‑Layer öffnen →</a></p>
-  </div>
-
-  <div class="card">
-    <h2>Audit‑Engine</h2>
-    <p>Die Audit‑Engine rekonstruiert den vollständigen System‑State aus der Ereigniskette.  
-    Sie ist die ultimative Quelle der Wahrheit.</p>
-    <p class="small"><a href="pages/audit-engine.html">Audit‑Engine öffnen →</a></p>
-  </div>
-
-  <div class="card">
-    <h2>Zusammenfassung</h2>
-    <p>Die Engine ist das deterministische Fundament der gesamten Chainline‑Plattform.  
-    Sie garantiert Integrität, Sicherheit, Reproduzierbarkeit und Audit‑Fähigkeit.</p>
-  </div>
-
+  <div id="timeline" class="timeline"></div>
 </div>
+
+<script>
+  fetch("chronik.json")
+    .then(r => r.json())
+    .then(data => {
+      const t = document.getElementById("timeline");
+      const events = [];
+
+      events.push(data.chain2025.genesis);
+      data.chain2025.echo.forEach(e => events.push(e));
+      events.push(data.chain2025.closure);
+
+      events.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+
+      events.forEach(ev => {
+        t.innerHTML += `
+          <div class="entry">
+            <div class="date">${ev.id}</div>
+            <div class="title">${ev.title}</div>
+            <div class="desc">${ev.description}</div>
+          </div>
+        `;
+      });
+    });
+</script>
 
 </body>
 </html>
