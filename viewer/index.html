@@ -8,6 +8,16 @@
 </head>
 
 <body>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Chainline Engine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/portal.css">
+</head>
+
+<body>
 
 <div id="header"></div>
 <script>
@@ -17,43 +27,22 @@
 </script>
 
 <div class="wrap">
-  <span class="tag">Chain2025</span>
-  <h1 id="title">Dokument</h1>
-  <div id="content">Lade…</div>
+  <span class="tag">Chainline Engine</span>
+  <h1>Engine‑Module</h1>
+
+  <ul>
+    <li><a href="/engine/pages/runtime.html">Runtime</a></li>
+    <li><a href="/engine/pages/scheduler.html">Scheduler</a></li>
+    <li><a href="/engine/pages/validator.html">Validator</a></li>
+    <li><a href="/engine/pages/execution-layer.html">Execution Layer</a></li>
+    <li><a href="/engine/pages/audit-engine.html">Audit Engine</a></li>
+    <li><a href="/engine/pages/state-machine.html">State Machine</a></li>
+  </ul>
 </div>
 
-<script>
-  const params = new URLSearchParams(window.location.search);
-  const file = params.get("file");
+</body>
+</html>
 
-  if (!file) {
-    document.getElementById("title").innerText = "Kein Dokument ausgewählt";
-    document.getElementById("content").innerHTML = "<p>Bitte ein Dokument im Explorer auswählen.</p>";
-    throw new Error("No file parameter");
-  }
-
-  const filename = file.split("/").pop();
-  document.getElementById("title").innerText = filename;
-
-  fetch(file)
-    .then(r => r.text())
-    .then(md => {
-
-      md = md.replace(/^# (.*$)/gim, "<h1>$1</h1>");
-      md = md.replace(/^## (.*$)/gim, "<h2>$1</h2>");
-      md = md.replace(/^### (.*$)/gim, "<h3>$1</h3>");
-
-      md = md.replace(/\*\*(.*?)\*\*/gim, "<b>$1</b>");
-      md = md.replace(/\*(.*?)\*/gim, "<i>$1</i>");
-
-      md = md.replace(/`([^`]+)`/gim, "<code>$1</code>");
-
-      md = md.replace(/\n{2,}/g, "</p><p>");
-      md = "<p>" + md + "</p>";
-
-      document.getElementById("content").innerHTML = md;
-    });
-</script>
 
 </body>
 </html>
