@@ -1,58 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>CoreCraft Chainline — Chain2025</title>
+  <title>Chain2025 — Portal</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="portal.css">
-  <style>
-    body { font-family: system-ui, sans-serif; margin: 0; padding: 2rem; background:#05060a; color:#f5f5f5; }
-    a { color:#7fd4ff; text-decoration:none; }
-    a:hover { text-decoration:underline; }
-    .wrap { max-width: 960px; margin: 0 auto; }
-    h1 { margin-bottom: .25rem; }
-    .tag { display:inline-block; padding:.15rem .5rem; border-radius:999px; border:1px solid #555; font-size:.75rem; text-transform:uppercase; letter-spacing:.08em; }
-    .card { border:1px solid #333; border-radius:12px; padding:1.25rem 1.5rem; background:rgba(255,255,255,0.02); }
-  </style>
+  <link rel="stylesheet" href="/portal.css">
 </head>
 
 <body>
 
 <div id="header"></div>
 <script>
-  fetch("header.html")
+  fetch("/header.html")
     .then(r => r.text())
     .then(h => document.getElementById("header").innerHTML = h);
 </script>
 
 <div class="wrap">
   <span class="tag">Chain2025</span>
-  <h1>CoreCraft Chainline Portal</h1>
-  <p>Audit‑grade navigation for Chain2025 documentation and ritual engine.</p>
+  <h1>Portal</h1>
+  <p>Willkommen im modularen Chainline‑Portal.</p>
 
-  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1.5rem; margin-top:2rem;">
-
-    <a href="chronik.html" class="card">
-      <h2>Chronik</h2>
-      <p>Timeline‑View, automatisch sortiert aus chronik.json.</p>
-    </a>
-
-    <a href="explorer.html" class="card">
-      <h2>Explorer</h2>
-      <p>Navigator für Artefakte, Dokumente und Validator‑Material.</p>
-    </a>
-
-    <a href="rituale.html" class="card">
-      <h2>Rituale</h2>
-      <p>Genesis → Echo → Closure Übersicht.</p>
-    </a>
-
-    <a href="docs_chain2025/INDEX.md" class="card">
-      <h2>Dokumentation</h2>
-      <p>Kompletter Dokumentationsindex für Chain2025.</p>
-    </a>
-
-  </div>
+  <ul>
+    <li><a href="/chronik/">Chronik</a></li>
+    <li><a href="/explorer/">Explorer</a></li>
+    <li><a href="/rituale/">Rituale</a></li>
+    <li><a href="/viewer/">Viewer</a></li>
+    <li><a href="/engine/">Engine</a></li>
+  </ul>
 </div>
 
 </body>
