@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Chain2025 — Chronik</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/portal.css">
+</head>
+
+<body>
+
+<div id="header"></div>
+<script>
+  fetch("/header.html")
+    .then(r => r.text())
+    .then(h => document.getElementById("header").innerHTML = h);
+</script>
+
+<div class="wrap">
+  <span class="tag">Chain2025</span>
+  <h1>Chronik</h1>
+  <p>Dynamische Timeline aus <code>chronik.json</code>.</p>
+
+  <div id="timeline" class="timeline"></div>
+</div>
+
+<script>
+  fetch("chronik.json")
+    .then(r => r.json())
+    .then(data => {
+      const t = document.getElementById("timeline");
+      const events = [];
+
+      events.push(data.chain2025.genesis);
+      data.chain2025.echo.forEach(e => events.push(e));
+      events.push(data.chain2025.closure);
+
+      events.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+
+      events.forEach(ev => {
+        t.innerHTML += `
+          <div class="entry">
+            <div class="date">${ev.id}</div>
+            <div class="title">${ev.title}</div>
+            <div class="desc">${ev.description}</div>
+          </div>
+        `;
+      });
+    });
+</script>
+
+</body>
+</html>
