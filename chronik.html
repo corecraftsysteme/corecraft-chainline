@@ -43,28 +43,28 @@
 </div>
 
 <script>
-  fetch("chronik.json")
-    .then(r => r.json())
-    .then(data => {
-      const t = document.getElementById("timeline");
-      const events = [];
+fetch(file)
+  .then(r => r.text())
+  .then(md => {
 
-      events.push(data.chain2025.genesis);
-      data.chain2025.echo.forEach(e => events.push(e));
-      events.push(data.chain2025.closure);
+    // Überschriften
+    md = md.replace(/^# (.*$)/gim, "<h1>$1</h1>");
+    md = md.replace(/^## (.*$)/gim, "<h2>$1</h2>");
+    md = md.replace(/^### (.*$)/gim, "<h3>$1</h3>");
 
-      events.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+    // Bold / Italic
+    md = md.replace(/\*\*(.*?)\*\*/gim, "<b>$1</b>");
+    md = md.replace(/\*(.*?)\*/gim, "<i>$1</i>");
 
-      events.forEach(ev => {
-        t.innerHTML += `
-          <div class="entry">
-            <div class="date">${ev.id}</div>
-            <div class="title">${ev.title}</div>
-            <div class="desc">${ev.description}</div>
-          </div>
-        `;
-      });
-    });
+    // Inline Code
+    md = md.replace(/`([^`]+)`/gim, "<code>$1</code>");
+
+    // Absätze statt alles zu <br> machen
+    md = md.replace(/\n{2,}/g, "</p><p>");
+    md = "<p>" + md + "</p>";
+
+    document.getElementById("content").innerHTML = md;
+  });
 </script>
 
 </body>
