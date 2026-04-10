@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
   <meta charset="UTF-8">
   <title>Chain2025 — Explorer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="portal.css">
+  <link rel="stylesheet" href="/portal.css">
 </head>
 
 <body>
 
 <div id="header"></div>
 <script>
-  fetch("header.html")
+  fetch("/header.html")
     .then(r => r.text())
     .then(h => document.getElementById("header").innerHTML = h);
 </script>
@@ -19,22 +19,24 @@
 <div class="wrap">
   <span class="tag">Chain2025</span>
   <h1>Explorer</h1>
-  <p>Automatisch generierte Liste aus <code>explorer.json</code>.</p>
+  <p>Daten aus <code>explorer.json</code>.</p>
 
-  <div class="card">
-    <h2>Dokumentation</h2>
-    <ul id="doclist"></ul>
-  </div>
+  <div id="list"></div>
 </div>
 
 <script>
   fetch("explorer.json")
     .then(r => r.json())
     .then(data => {
-      const list = document.getElementById("doclist");
-      data.docs.forEach(path => {
-        const name = path.split("/").pop();
-        list.innerHTML += `<li><a href="viewer.html?file=${path}">${name}</a></li>`;
+      const list = document.getElementById("list");
+      data.items.forEach(item => {
+        list.innerHTML += `
+          <div class="entry">
+            <div class="title">${item.title}</div>
+            <div class="desc">${item.description}</div>
+            <a href="/viewer/?file=${item.file}">Öffnen</a>
+          </div>
+        `;
       });
     });
 </script>
