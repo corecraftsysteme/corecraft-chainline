@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Chain2025 — Explorer</title>
+  <title>Chain2025 — Rituale</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/portal.css">
 </head>
@@ -18,29 +18,13 @@
 
 <div class="wrap">
   <span class="tag">Chain2025</span>
-  <h1>Explorer</h1>
-  <p>Daten aus <code>explorer.json</code>.</p>
+  <h1>Rituale</h1>
+  <p>Dokumentation der Chainline‑Rituale.</p>
 
-  <div id="list"></div>
+  <p>Diese Seite wird später erweitert.</p>
 </div>
-
-<script>
-  fetch("explorer.json")
-    .then(r => r.json())
-    .then(data => {
-      const list = document.getElementById("list");
-      data.items.forEach(item => {
-        list.innerHTML += `
-          <div class="entry">
-            <div class="title">${item.title}</div>
-            <div class="desc">${item.description}</div>
-            <a href="/viewer/?file=${item.file}">Öffnen</a>
-          </div>
-        `;
-      });
-    });
-</script>
 
 </body>
 </html>
+
 
