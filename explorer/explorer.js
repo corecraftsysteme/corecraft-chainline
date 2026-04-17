@@ -91,7 +91,7 @@ async function init() {
     const q = search.value.toLowerCase();
     const active = document.querySelector("nav button.active").dataset.tab;
 
-    if (active === "dashboard") return; // Dashboard nicht filtern
+    if (active === "dashboard") return;
 
     const items = data[active][active] || data[active];
 
@@ -113,13 +113,12 @@ async function init() {
 
   search.addEventListener("input", applySearch);
 
-  renderTab("dashboard"); // Startansicht
+  renderTab("dashboard");
 }
 
 init();
 
 async function loadDashboard(data) {
-  // Metrics
   document.getElementById("metric-districts").textContent =
     data.districts.districts.length;
 
@@ -129,14 +128,12 @@ async function loadDashboard(data) {
   document.getElementById("metric-registry").textContent =
     data.registry.registry.entries.length;
 
-  // Status
   const chainOK = data.chains.chains.master.entries.length >= 0;
   document.getElementById("status-chain").className =
     "status-indicator " + (chainOK ? "ok" : "err");
   document.getElementById("status-chain").textContent =
     chainOK ? "OK" : "ERROR";
 
-  // Versions
   document.getElementById("version-engine").textContent =
     data.products.products.find(p => p.id === "enginecore")?.version || "n/a";
 }
