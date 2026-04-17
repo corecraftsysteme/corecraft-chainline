@@ -187,3 +187,19 @@ function renderChainGraph(chains) {
   `;
 }
 
+function renderDetail(tab, id) {
+  const items = data[tab][tab] || data[tab];
+  const item = items.find(i => i.id === id);
+
+  content.innerHTML = `
+    <button class="back-btn">← Back</button>
+
+    <div class="detail">
+      <h2>${item.name || item.id}</h2>
+
+      <pre>${JSON.stringify(item, null, 2)}</pre>
+    </div>
+  `;
+
+  document.querySelector(".back-btn").onclick = () => renderTab(tab);
+}
