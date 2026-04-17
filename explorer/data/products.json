@@ -1,0 +1,36 @@
+{
+  "products": [
+    {
+      "id": "enginecore",
+      "name": "EngineCore",
+      "editions": [],
+      "bundles": [],
+      "registry": [],
+      "chains": []
+    },
+    {
+      "id": "interchain",
+      "name": "Interchain",
+      "editions": [],
+      "bundles": [],
+      "registry": [],
+      "chains": []
+    },
+    {
+      "id": "runtime",
+      "name": "Runtime",
+      "editions": [],
+      "bundles": [],
+      "registry": [],
+      "chains": []
+    },
+    {
+      "id": "symbolicai",
+      "name": "Symbolic AI",
+      "editions": [],
+      "bundles": [],
+      "registry": [],
+      "chains": []
+    }
+  ]
+}
