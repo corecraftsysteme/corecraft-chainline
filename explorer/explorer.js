@@ -134,7 +134,19 @@ if (tab === "chain-graph") {
 
   search.addEventListener("input", applySearch);
 
-  renderTab("dashboard");
+  content.innerHTML = items.map(item => `
+  <div class="card" data-id="${item.id}">
+    <h3>${item.name || item.id}</h3>
+    <pre>${JSON.stringify(item, null, 2)}</pre>
+  </div>
+`).join("");
+  
+document.querySelectorAll(".card").forEach(card => {
+  card.addEventListener("click", () =>
+    renderDetail(tab, card.dataset.id)
+  );
+});
+
 }
 
 init();
