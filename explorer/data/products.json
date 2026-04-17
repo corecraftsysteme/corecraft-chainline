@@ -3,6 +3,7 @@
     {
       "id": "enginecore",
       "name": "EngineCore",
+      "version": "2.0.1",
       "editions": [],
       "bundles": [],
       "registry": [],
@@ -11,6 +12,7 @@
     {
       "id": "interchain",
       "name": "Interchain",
+      "version": "1.4.0",
       "editions": [],
       "bundles": [],
       "registry": [],
@@ -19,6 +21,7 @@
     {
       "id": "runtime",
       "name": "Runtime",
+      "version": "3.1.2",
       "editions": [],
       "bundles": [],
       "registry": [],
@@ -27,6 +30,7 @@
     {
       "id": "symbolicai",
       "name": "Symbolic AI",
+      "version": "0.9.0",
       "editions": [],
       "bundles": [],
       "registry": [],
