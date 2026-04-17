@@ -3,7 +3,9 @@ async function load(path) {
   return await r.json();
 }
 
-// --- Dashboard HTML Template ---
+/* ------------------------------
+   Dashboard HTML
+------------------------------ */
 const dashboardHTML = `
 <div id="dashboard">
 
@@ -51,6 +53,9 @@ const dashboardHTML = `
 </div>
 `;
 
+/* ------------------------------
+   Chain Graph HTML
+------------------------------ */
 const chainGraphHTML = `
 <div id="chain-graph">
   <h2>Chain Health Graph</h2>
@@ -65,6 +70,9 @@ const chainGraphHTML = `
 </div>
 `;
 
+/* ------------------------------
+   INIT
+------------------------------ */
 async function init() {
   const root = await load("explorer.json");
 
@@ -79,40 +87,72 @@ async function init() {
   const search = document.getElementById("search");
   const tabs = document.querySelectorAll("nav button");
 
+  /* ------------------------------
+     RENDER TAB
+  ------------------------------ */
   function renderTab(tab) {
     tabs.forEach(t => t.classList.remove("active"));
     document.querySelector(`button[data-tab="${tab}"]`).classList.add("active");
 
-    // --- Chain Graph Tab ---
-if (tab === "chain-graph") {
-  content.innerHTML = chainGraphHTML;
-  renderChainGraph(data.chains);
-  return;
-}
+    /* Chain Graph */
+    if (tab === "chain-graph") {
+      content.innerHTML = chainGraphHTML;
+      renderChainGraph(data.chains);
+      return;
+    }
 
-    // --- Dashboard Tab ---
+    /* Dashboard */
     if (tab === "dashboard") {
       content.innerHTML = dashboardHTML;
       loadDashboard(data);
       return;
     }
 
-    // --- Standard Tabs ---
+    /* Standard Tabs */
     const items = data[tab][tab] || data[tab];
 
     content.innerHTML = items.map(item => `
-      <div class="card">
+      <div class="card" data-id="${item.id}">
         <h3>${item.name || item.id}</h3>
         <pre>${JSON.stringify(item, null, 2)}</pre>
       </div>
     `).join("");
+
+    /* Card → Detail */
+    document.querySelectorAll(".card").forEach(card => {
+      card.addEventListener("click", () =>
+        renderDetail(tab, card.dataset.id)
+      );
+    });
   }
 
+  /* ------------------------------
+     DETAIL VIEW
+  ------------------------------ */
+  function renderDetail(tab, id) {
+    const items = data[tab][tab] || data[tab];
+    const item = items.find(i => i.id === id);
+
+    content.innerHTML = `
+      <button class="back-btn">← Back</button>
+
+      <div class="detail">
+        <h2>${item.name || item.id}</h2>
+        <pre>${JSON.stringify(item, null, 2)}</pre>
+      </div>
+    `;
+
+    document.querySelector(".back-btn").onclick = () => renderTab(tab);
+  }
+
+  /* ------------------------------
+     SEARCH
+  ------------------------------ */
   function applySearch() {
     const q = search.value.toLowerCase();
     const active = document.querySelector("nav button.active").dataset.tab;
 
-    if (active === "dashboard") return;
+    if (active === "dashboard" || active === "chain-graph") return;
 
     const items = data[active][active] || data[active];
 
@@ -121,36 +161,47 @@ if (tab === "chain-graph") {
     );
 
     content.innerHTML = filtered.map(item => `
-      <div class="card">
+      <div class="card" data-id="${item.id}">
         <h3>${item.name || item.id}</h3>
         <pre>${JSON.stringify(item, null, 2)}</pre>
       </div>
     `).join("");
+
+    document.querySelectorAll(".card").forEach(card => {
+      card.addEventListener("click", () =>
+        renderDetail(active, card.dataset.id)
+      );
+    });
   }
 
+  /* ------------------------------
+     EVENT LISTENERS
+  ------------------------------ */
   tabs.forEach(btn => {
     btn.addEventListener("click", () => renderTab(btn.dataset.tab));
   });
 
   search.addEventListener("input", applySearch);
 
-  content.innerHTML = items.map(item => `
-  <div class="card" data-id="${item.id}">
-    <h3>${item.name || item.id}</h3>
-    <pre>${JSON.stringify(item, null, 2)}</pre>
-  </div>
-`).join("");
-  
-document.querySelectorAll(".card").forEach(card => {
-  card.addEventListener("click", () =>
-    renderDetail(tab, card.dataset.id)
-  );
-});
+  /* ------------------------------
+     DEFAULT TAB
+  ------------------------------ */
+  renderTab("dashboard");
 
+  /* ------------------------------
+     AUTO REFRESH DASHBOARD
+  ------------------------------ */
+  setInterval(() => {
+    const active = document.querySelector("nav button.active").dataset.tab;
+    if (active === "dashboard") loadDashboard(data);
+  }, 5000);
 }
 
 init();
 
+/* ------------------------------
+   DASHBOARD LOADER
+------------------------------ */
 async function loadDashboard(data) {
   document.getElementById("metric-districts").textContent =
     data.districts.districts.length;
@@ -170,6 +221,10 @@ async function loadDashboard(data) {
   document.getElementById("version-engine").textContent =
     data.products.products.find(p => p.id === "enginecore")?.version || "n/a";
 }
+
+/* ------------------------------
+   CHAIN GRAPH RENDERER
+------------------------------ */
 function renderChainGraph(chains) {
   document.getElementById("graph-master").innerHTML = `
     <h3>Master Chain</h3>
@@ -187,19 +242,3 @@ function renderChainGraph(chains) {
   `;
 }
 
-function renderDetail(tab, id) {
-  const items = data[tab][tab] || data[tab];
-  const item = items.find(i => i.id === id);
-
-  content.innerHTML = `
-    <button class="back-btn">← Back</button>
-
-    <div class="detail">
-      <h2>${item.name || item.id}</h2>
-
-      <pre>${JSON.stringify(item, null, 2)}</pre>
-    </div>
-  `;
-
-  document.querySelector(".back-btn").onclick = () => renderTab(tab);
-}
