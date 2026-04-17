@@ -158,4 +158,20 @@ async function loadDashboard(data) {
   document.getElementById("version-engine").textContent =
     data.products.products.find(p => p.id === "enginecore")?.version || "n/a";
 }
+function renderChainGraph(chains) {
+  document.getElementById("graph-master").innerHTML = `
+    <h3>Master Chain</h3>
+    <p>${chains.chains.master.entries.length} entries</p>
+  `;
+
+  document.getElementById("graph-districts").innerHTML = `
+    <h3>District Chain</h3>
+    <p>${chains.chains.districts.districts.length} districts</p>
+  `;
+
+  document.getElementById("graph-products").innerHTML = `
+    <h3>Product Chain</h3>
+    <p>${chains.chains.products.products.length} products</p>
+  `;
+}
 
