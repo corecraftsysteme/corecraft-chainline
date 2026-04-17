@@ -1,0 +1,32 @@
+{
+  "districts": [
+    {
+      "id": "core",
+      "name": "Core District",
+      "modules": [],
+      "chains": [],
+      "registry": []
+    },
+    {
+      "id": "runtime",
+      "name": "Runtime District",
+      "modules": [],
+      "chains": [],
+      "registry": []
+    },
+    {
+      "id": "interchain",
+      "name": "Interchain District",
+      "modules": [],
+      "chains": [],
+      "registry": []
+    },
+    {
+      "id": "ai",
+      "name": "AI District",
+      "modules": [],
+      "chains": [],
+      "registry": []
+    }
+  ]
+}
