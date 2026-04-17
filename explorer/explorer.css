@@ -230,3 +230,32 @@ pre::-webkit-scrollbar-thumb {
   font-size: 2rem;
   color: var(--genesis-accent);
 }
+
+.detail {
+  background: var(--genesis-bg2);
+  border: 1px solid var(--genesis-border);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: var(--genesis-glow);
+}
+
+.detail h2 {
+  margin-top: 0;
+  color: var(--genesis-accent);
+}
+
+.back-btn {
+  background: transparent;
+  border: 1px solid var(--genesis-accent);
+  color: var(--genesis-accent);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: 0.25s ease;
+}
+
+.back-btn:hover {
+  background: var(--genesis-accent);
+  color: #000;
+}
