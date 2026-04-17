@@ -158,3 +158,80 @@ pre::-webkit-scrollbar-thumb {
   background: #333;
   border-radius: 3px;
 }
+
+/* --- Dashboard Grid --- */
+
+#dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.dash-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+/* --- Dashboard Cards --- */
+
+.dash-card {
+  background: var(--genesis-bg2);
+  border: 1px solid var(--genesis-border);
+  padding: 1.5rem;
+  border-radius: 12px;
+  transition: 0.25s ease;
+  box-shadow: inset 0 0 12px rgba(0,0,0,0.3);
+}
+
+.dash-card:hover {
+  border-color: var(--genesis-accent);
+  box-shadow: var(--genesis-glow);
+}
+
+.dash-card h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--genesis-accent);
+}
+
+/* --- Metrics --- */
+
+.metric-value {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--genesis-gold);
+}
+
+/* --- Status Indicators --- */
+
+.status-indicator {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  display: inline-block;
+}
+
+.status-indicator.ok {
+  background: rgba(0, 200, 120, 0.15);
+  color: #0c8;
+}
+
+.status-indicator.warn {
+  background: rgba(255, 200, 0, 0.15);
+  color: #fc0;
+}
+
+.status-indicator.err {
+  background: rgba(255, 80, 80, 0.15);
+  color: #f55;
+}
+
+/* --- Versions --- */
+
+.version-value {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--genesis-accent);
+}
