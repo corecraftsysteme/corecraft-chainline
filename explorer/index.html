@@ -2,29 +2,18 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Chain2025 — Rituale</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/portal.css">
+  <title>Chain2025 Explorer</title>
+  <link rel="stylesheet" href="explorer.css">
 </head>
 
 <body>
 
-<div id="header"></div>
-<script>
-  fetch("/header.html")
-    .then(r => r.text())
-    .then(h => document.getElementById("header").innerHTML = h);
-</script>
-
 <div class="wrap">
-  <span class="tag">Chain2025</span>
-  <h1>Rituale</h1>
-  <p>Dokumentation der Chainline‑Rituale.</p>
-
-  <p>Diese Seite wird später erweitert.</p>
+  <h1>Chain2025 Explorer</h1>
+  <div id="explorer"></div>
 </div>
 
+<script src="explorer.js"></script>
 </body>
 </html>
-
 
