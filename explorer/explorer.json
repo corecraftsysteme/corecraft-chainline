@@ -1,12 +1,8 @@
 {
-  "docs": [
-    "docs_chain2025/INDEX.md",
-    "docs_chain2025/ARCHITECTURE.md",
-    "docs_chain2025/SECURITY.md",
-    "docs_chain2025/DEPLOYMENT.md",
-    "docs_chain2025/FLOW.md",
-    "docs_chain2025/VALIDATOR-DIAGRAM.md",
-    "docs_chain2025/VALIDATOR-OPERATIONS.md",
-    "docs_chain2025/GLOSSARY.md"
-  ]
+  "name": "Chain2025 Explorer",
+  "version": "1.0.0",
+  "districts": "data/districts.json",
+  "products": "data/products.json",
+  "registry": "data/registry.json",
+  "chains": "data/chains.json"
 }
