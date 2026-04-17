@@ -1,0 +1,19 @@
+body {
+  font-family: system-ui, sans-serif;
+  background: #111;
+  color: #eee;
+  margin: 0;
+  padding: 2rem;
+}
+
+.wrap {
+  max-width: 900px;
+  margin: auto;
+}
+
+pre {
+  background: #222;
+  padding: 1rem;
+  border-radius: 6px;
+  overflow-x: auto;
+}
