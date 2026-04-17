@@ -8,12 +8,20 @@
 
 <body>
 
-<div class="wrap">
+<header>
   <h1>Chain2025 Explorer</h1>
-  <div id="explorer"></div>
-</div>
+  <input id="search" type="text" placeholder="Search…" autocomplete="off">
+</header>
+
+<nav>
+  <button data-tab="districts">Districts</button>
+  <button data-tab="products">Products</button>
+  <button data-tab="registry">Registry</button>
+  <button data-tab="chains">Chains</button>
+</nav>
+
+<main id="content"></main>
 
 <script src="explorer.js"></script>
 </body>
 </html>
-
