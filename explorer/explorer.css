@@ -1,25 +1,25 @@
 :root {
   --genesis-accent: #0af;
   --genesis-gold: #d4a44a;
-  --genesis-bg: #111;
-  --genesis-bg2: #1a1a1a;
-  --genesis-border: #222;
-  --genesis-glow: 0 0 12px rgba(0, 170, 255, 0.4);
+  --genesis-bg: #05060a;
+  --genesis-bg2: #0b0d12;
+  --genesis-border: #1b2230;
+  --genesis-glow: 0 0 18px rgba(0, 170, 255, 0.55);
 }
 
-/* Base */
+/* GLOBAL BACKGROUND */
 body {
   margin: 0;
-  background: #0d0d0d;
   color: #eee;
   font-family: system-ui, sans-serif;
+  background: radial-gradient(circle at top, #101525 0, #05060a 55%, #020308 100%);
 }
 
 main {
   padding: 2rem;
 }
 
-/* Header */
+/* HEADER */
 header {
   position: sticky;
   top: 0;
@@ -38,7 +38,7 @@ header h1 {
   font-weight: 600;
 }
 
-/* Search */
+/* SEARCH */
 #search {
   padding: 0.6rem 1rem;
   background: #1a1a1a;
@@ -55,11 +55,12 @@ header h1 {
   outline: none;
 }
 
-/* Tabs */
+/* TABS */
 nav {
   display: flex;
   background: #151515;
   border-bottom: 1px solid var(--genesis-border);
+  box-shadow: 0 2px 18px rgba(0,0,0,0.8);
 }
 
 nav button {
@@ -79,18 +80,13 @@ nav button:hover {
 }
 
 nav button.active {
+  background: radial-gradient(circle at top, rgba(0,170,255,0.35), transparent 60%);
+  text-shadow: 0 0 10px rgba(0,170,255,0.9);
   color: var(--genesis-accent);
   border-bottom: 2px solid var(--genesis-accent);
-  box-shadow: inset 0 -2px 8px rgba(0,170,255,0.3);
 }
 
-/* Cards */
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1.5rem;
-}
-
+/* CARDS */
 .card {
   background: var(--genesis-bg2);
   border: 1px solid var(--genesis-border);
@@ -110,7 +106,7 @@ nav button.active {
   font-weight: 600;
 }
 
-/* Dashboard */
+/* DASHBOARD */
 #dashboard {
   display: flex;
   flex-direction: column;
@@ -143,14 +139,28 @@ nav button.active {
   color: var(--genesis-accent);
 }
 
-/* Metrics */
+/* RITUAL GLOW ANIMATION */
+@keyframes pulseGlow {
+  0%   { box-shadow: 0 0 6px rgba(0,170,255,0.15); }
+  50%  { box-shadow: 0 0 18px rgba(0,170,255,0.65); }
+  100% { box-shadow: 0 0 6px rgba(0,170,255,0.15); }
+}
+
+.card:hover,
+.dash-card:hover {
+  animation: pulseGlow 1.8s infinite;
+}
+
+/* METRICS */
 .metric-value {
   font-size: 2.4rem;
   font-weight: 700;
   color: var(--genesis-gold);
+  animation: pulseGlow 2.4s infinite;
+  letter-spacing: 0.04em;
 }
 
-/* Status */
+/* STATUS BADGES */
 .status-indicator {
   padding: 0.5rem 1rem;
   border-radius: 6px;
@@ -160,21 +170,21 @@ nav button.active {
 }
 
 .status-indicator.ok {
-  background: rgba(0, 200, 120, 0.15);
-  color: #0c8;
+  background: radial-gradient(circle, rgba(0,200,120,0.35), transparent 60%);
+  border: 1px solid rgba(0,200,120,0.7);
 }
 
 .status-indicator.warn {
-  background: rgba(255, 200, 0, 0.15);
-  color: #fc0;
+  background: radial-gradient(circle, rgba(255,200,0,0.35), transparent 60%);
+  border: 1px solid rgba(255,200,0,0.7);
 }
 
 .status-indicator.err {
-  background: rgba(255, 80, 80, 0, 0.15);
-  color: #f55;
+  background: radial-gradient(circle, rgba(255,80,80,0.35), transparent 60%);
+  border: 1px solid rgba(255,80,80,0.7);
 }
 
-/* JSON Viewer */
+/* JSON VIEWER */
 pre {
   background: #0f0f0f;
   border: 1px solid #222;
@@ -194,8 +204,8 @@ pre::-webkit-scrollbar-thumb {
   background: #333;
   border-radius: 3px;
 }
-/* --- Chain Graph --- */
 
+/* CHAIN GRAPH */
 #chain-graph {
   padding: 2rem;
 }
@@ -212,25 +222,31 @@ pre::-webkit-scrollbar-thumb {
 }
 
 .graph-block {
-  background: var(--genesis-bg2);
-  border: 1px solid var(--genesis-border);
-  padding: 1.5rem;
+  position: relative;
+  background: linear-gradient(145deg, #0b0f18, #05060a);
+  border: 1px solid rgba(0,170,255,0.6);
   border-radius: 12px;
-  min-width: 200px;
-  text-align: center;
-  box-shadow: var(--genesis-glow);
+  padding: 1.5rem;
+  box-shadow: 0 0 22px rgba(0,170,255,0.55);
 }
 
-.graph-block h3 {
-  margin-top: 0;
-  color: var(--genesis-accent);
+.graph-block::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid rgba(0,170,255,0.25);
+  filter: blur(6px);
+  opacity: 0.7;
 }
 
 .graph-arrow {
   font-size: 2rem;
   color: var(--genesis-accent);
+  text-shadow: 0 0 12px rgba(0,170,255,0.8);
 }
 
+/* DETAIL VIEW */
 .detail {
   background: var(--genesis-bg2);
   border: 1px solid var(--genesis-border);
