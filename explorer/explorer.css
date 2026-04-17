@@ -101,14 +101,6 @@ main {
   font-weight: 600;
 }
 
-pre {
-  background: #111;
-  padding: 1rem;
-  border-radius: 6px;
-  overflow-x: auto;
-  font-size: 0.85rem;
-}
-
 .badge {
   display: inline-block;
   padding: 0.25rem 0.6rem;
