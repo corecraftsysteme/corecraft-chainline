@@ -7,8 +7,7 @@
   --genesis-glow: 0 0 12px rgba(0, 170, 255, 0.4);
 }
 
-/* --- Base --- */
-
+/* Base */
 body {
   margin: 0;
   background: #0d0d0d;
@@ -20,8 +19,7 @@ main {
   padding: 2rem;
 }
 
-/* --- Header --- */
-
+/* Header */
 header {
   position: sticky;
   top: 0;
@@ -40,8 +38,7 @@ header h1 {
   font-weight: 600;
 }
 
-/* --- Search --- */
-
+/* Search */
 #search {
   padding: 0.6rem 1rem;
   background: #1a1a1a;
@@ -58,8 +55,7 @@ header h1 {
   outline: none;
 }
 
-/* --- Tabs --- */
-
+/* Tabs */
 nav {
   display: flex;
   background: #151515;
@@ -88,8 +84,7 @@ nav button.active {
   box-shadow: inset 0 -2px 8px rgba(0,170,255,0.3);
 }
 
-/* --- Cards --- */
-
+/* Cards */
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -115,8 +110,7 @@ nav button.active {
   font-weight: 600;
 }
 
-/* --- Dashboard --- */
-
+/* Dashboard */
 #dashboard {
   display: flex;
   flex-direction: column;
@@ -149,16 +143,14 @@ nav button.active {
   color: var(--genesis-accent);
 }
 
-/* --- Metrics --- */
-
+/* Metrics */
 .metric-value {
   font-size: 2.4rem;
   font-weight: 700;
   color: var(--genesis-gold);
 }
 
-/* --- Status --- */
-
+/* Status */
 .status-indicator {
   padding: 0.5rem 1rem;
   border-radius: 6px;
@@ -178,12 +170,11 @@ nav button.active {
 }
 
 .status-indicator.err {
-  background: rgba(255, 80, 80, 0.15);
+  background: rgba(255, 80, 80, 0, 0.15);
   color: #f55;
 }
 
-/* --- JSON Viewer --- */
-
+/* JSON Viewer */
 pre {
   background: #0f0f0f;
   border: 1px solid #222;
