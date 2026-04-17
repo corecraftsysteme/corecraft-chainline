@@ -51,6 +51,20 @@ const dashboardHTML = `
 </div>
 `;
 
+const chainGraphHTML = `
+<div id="chain-graph">
+  <h2>Chain Health Graph</h2>
+
+  <div class="graph-row">
+    <div class="graph-block" id="graph-master"></div>
+    <div class="graph-arrow">→</div>
+    <div class="graph-block" id="graph-districts"></div>
+    <div class="graph-arrow">→</div>
+    <div class="graph-block" id="graph-products"></div>
+  </div>
+</div>
+`;
+
 async function init() {
   const root = await load("explorer.json");
 
