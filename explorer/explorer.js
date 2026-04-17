@@ -87,12 +87,34 @@ async function init() {
   const search = document.getElementById("search");
   const tabs = document.querySelectorAll("nav button");
 
+  let polling = null;
+
+  function startPolling() {
+    if (polling) return;
+
+    polling = setInterval(() => {
+      const active = document.querySelector("nav button.active").dataset.tab;
+      if (active === "dashboard") {
+        loadDashboard(data);
+      }
+    }, 5000);
+  }
+
+  function stopPolling() {
+    clearInterval(polling);
+    polling = null;
+  }
+
   /* ------------------------------
      RENDER TAB
   ------------------------------ */
   function renderTab(tab) {
     tabs.forEach(t => t.classList.remove("active"));
     document.querySelector(`button[data-tab="${tab}"]`).classList.add("active");
+
+    // Polling control
+    if (tab === "dashboard") startPolling();
+    else stopPolling();
 
     /* Chain Graph */
     if (tab === "chain-graph") {
@@ -187,14 +209,6 @@ async function init() {
      DEFAULT TAB
   ------------------------------ */
   renderTab("dashboard");
-
-  /* ------------------------------
-     AUTO REFRESH DASHBOARD
-  ------------------------------ */
-  setInterval(() => {
-    const active = document.querySelector("nav button.active").dataset.tab;
-    if (active === "dashboard") loadDashboard(data);
-  }, 5000);
 }
 
 init();
@@ -241,4 +255,3 @@ function renderChainGraph(chains) {
     <p>${chains.chains.products.products.length} products</p>
   `;
 }
-
