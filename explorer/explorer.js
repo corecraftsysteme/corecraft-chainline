@@ -83,6 +83,13 @@ async function init() {
     tabs.forEach(t => t.classList.remove("active"));
     document.querySelector(`button[data-tab="${tab}"]`).classList.add("active");
 
+    // --- Chain Graph Tab ---
+if (tab === "chain-graph") {
+  content.innerHTML = chainGraphHTML;
+  renderChainGraph(data.chains);
+  return;
+}
+
     // --- Dashboard Tab ---
     if (tab === "dashboard") {
       content.innerHTML = dashboardHTML;
