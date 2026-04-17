@@ -3,6 +3,54 @@ async function load(path) {
   return await r.json();
 }
 
+// --- Dashboard HTML Template ---
+const dashboardHTML = `
+<div id="dashboard">
+
+  <section class="dash-row">
+    <div class="dash-card metric">
+      <h3>Active Districts</h3>
+      <div class="metric-value" id="metric-districts">0</div>
+    </div>
+
+    <div class="dash-card metric">
+      <h3>Active Products</h3>
+      <div class="metric-value" id="metric-products">0</div>
+    </div>
+
+    <div class="dash-card metric">
+      <h3>Registry Entries</h3>
+      <div class="metric-value" id="metric-registry">0</div>
+    </div>
+  </section>
+
+  <section class="dash-row">
+    <div class="dash-card status">
+      <h3>System Status</h3>
+      <div id="status-system" class="status-indicator ok">OK</div>
+    </div>
+
+    <div class="dash-card status">
+      <h3>Chain Health</h3>
+      <div id="status-chain" class="status-indicator ok">OK</div>
+    </div>
+  </section>
+
+  <section class="dash-row">
+    <div class="dash-card version">
+      <h3>Explorer Version</h3>
+      <div class="version-value">1.0.0</div>
+    </div>
+
+    <div class="dash-card version">
+      <h3>Genesis Engine</h3>
+      <div class="version-value" id="version-engine">n/a</div>
+    </div>
+  </section>
+
+</div>
+`;
+
 async function init() {
   const root = await load("explorer.json");
 
@@ -21,6 +69,14 @@ async function init() {
     tabs.forEach(t => t.classList.remove("active"));
     document.querySelector(`button[data-tab="${tab}"]`).classList.add("active");
 
+    // --- Dashboard Tab ---
+    if (tab === "dashboard") {
+      content.innerHTML = dashboardHTML;
+      loadDashboard(data);
+      return;
+    }
+
+    // --- Standard Tabs ---
     const items = data[tab][tab] || data[tab];
 
     content.innerHTML = items.map(item => `
@@ -34,6 +90,9 @@ async function init() {
   function applySearch() {
     const q = search.value.toLowerCase();
     const active = document.querySelector("nav button.active").dataset.tab;
+
+    if (active === "dashboard") return; // Dashboard nicht filtern
+
     const items = data[active][active] || data[active];
 
     const filtered = items.filter(i =>
@@ -54,7 +113,31 @@ async function init() {
 
   search.addEventListener("input", applySearch);
 
-  renderTab("districts");
+  renderTab("dashboard"); // Startansicht
 }
 
 init();
+
+async function loadDashboard(data) {
+  // Metrics
+  document.getElementById("metric-districts").textContent =
+    data.districts.districts.length;
+
+  document.getElementById("metric-products").textContent =
+    data.products.products.length;
+
+  document.getElementById("metric-registry").textContent =
+    data.registry.registry.entries.length;
+
+  // Status
+  const chainOK = data.chains.chains.master.entries.length >= 0;
+  document.getElementById("status-chain").className =
+    "status-indicator " + (chainOK ? "ok" : "err");
+  document.getElementById("status-chain").textContent =
+    chainOK ? "OK" : "ERROR";
+
+  // Versions
+  document.getElementById("version-engine").textContent =
+    data.products.products.find(p => p.id === "enginecore")?.version || "n/a";
+}
+
