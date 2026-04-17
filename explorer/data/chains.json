@@ -1,0 +1,16 @@
+{
+  "chains": {
+    "master": {
+      "id": "master-chain",
+      "entries": []
+    },
+    "districts": {
+      "id": "districts-chain",
+      "districts": []
+    },
+    "products": {
+      "id": "products-chain",
+      "products": []
+    }
+  }
+}
