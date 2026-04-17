@@ -194,3 +194,39 @@ pre::-webkit-scrollbar-thumb {
   background: #333;
   border-radius: 3px;
 }
+/* --- Chain Graph --- */
+
+#chain-graph {
+  padding: 2rem;
+}
+
+#chain-graph h2 {
+  color: var(--genesis-accent);
+  margin-bottom: 2rem;
+}
+
+.graph-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.graph-block {
+  background: var(--genesis-bg2);
+  border: 1px solid var(--genesis-border);
+  padding: 1.5rem;
+  border-radius: 12px;
+  min-width: 200px;
+  text-align: center;
+  box-shadow: var(--genesis-glow);
+}
+
+.graph-block h3 {
+  margin-top: 0;
+  color: var(--genesis-accent);
+}
+
+.graph-arrow {
+  font-size: 2rem;
+  color: var(--genesis-accent);
+}
