@@ -1,31 +1,60 @@
-async function loadJSON(path) {
+async function load(path) {
   const r = await fetch(path);
   return await r.json();
 }
 
-async function initExplorer() {
-  const root = await loadJSON("explorer.json");
+async function init() {
+  const root = await load("explorer.json");
 
-  const districts = await loadJSON(root.districts);
-  const products = await loadJSON(root.products);
-  const registry = await loadJSON(root.registry);
-  const chains = await loadJSON(root.chains);
+  const data = {
+    districts: await load(root.districts),
+    products: await load(root.products),
+    registry: await load(root.registry),
+    chains: await load(root.chains)
+  };
 
-  const el = document.getElementById("explorer");
+  const content = document.getElementById("content");
+  const search = document.getElementById("search");
+  const tabs = document.querySelectorAll("nav button");
 
-  el.innerHTML = `
-    <h2>Districts</h2>
-    <pre>${JSON.stringify(districts, null, 2)}</pre>
+  function renderTab(tab) {
+    tabs.forEach(t => t.classList.remove("active"));
+    document.querySelector(`button[data-tab="${tab}"]`).classList.add("active");
 
-    <h2>Products</h2>
-    <pre>${JSON.stringify(products, null, 2)}</pre>
+    const items = data[tab][tab] || data[tab];
 
-    <h2>Registry</h2>
-    <pre>${JSON.stringify(registry, null, 2)}</pre>
+    content.innerHTML = items.map(item => `
+      <div class="card">
+        <h3>${item.name || item.id}</h3>
+        <pre>${JSON.stringify(item, null, 2)}</pre>
+      </div>
+    `).join("");
+  }
 
-    <h2>Chains</h2>
-    <pre>${JSON.stringify(chains, null, 2)}</pre>
-  `;
+  function applySearch() {
+    const q = search.value.toLowerCase();
+    const active = document.querySelector("nav button.active").dataset.tab;
+    const items = data[active][active] || data[active];
+
+    const filtered = items.filter(i =>
+      JSON.stringify(i).toLowerCase().includes(q)
+    );
+
+    content.innerHTML = filtered.map(item => `
+      <div class="card">
+        <h3>${item.name || item.id}</h3>
+        <pre>${JSON.stringify(item, null, 2)}</pre>
+      </div>
+    `).join("");
+  }
+
+  tabs.forEach(btn => {
+    btn.addEventListener("click", () => renderTab(btn.dataset.tab));
+  });
+
+  search.addEventListener("input", applySearch);
+
+  renderTab("districts");
 }
 
-initExplorer();
+init();
